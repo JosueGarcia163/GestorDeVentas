@@ -1,5 +1,5 @@
 import { body, param } from "express-validator";
-import { emailExists, usernameExists, userExists, categoriesExists } from "../helpers/db-validators.js";
+import { categoriesExists } from "../helpers/db-validators.js";
 import { validarCampos } from "./validate-fields.js";
 import { deleteFileOnError } from "./delete-file-on-error.js";
 import { handleErrors } from "./handle-errors.js";
@@ -16,12 +16,10 @@ export const createValidator = [
     handleErrors
 ]
 
-export const getCategoriesByIdValidator = [
+export const getCategoriesValidator = [
     validateJWT,
     //Utilizamos el metodo para validar o permitir varios roles.
     hasRoles("ADMIN_ROLE"),
-    param("uid").isMongoId().withMessage("No es un ID válido de MongoDB"),
-    param("uid").custom(categoriesExists),
     validarCampos,
     handleErrors
 ]
@@ -31,7 +29,7 @@ export const deleteCategoriesValidator = [
     //Utilizamos el metodo para validar o permitir varios roles.
     hasRoles("ADMIN_ROLE"),
     param("uid").isMongoId().withMessage("No es un ID válido de MongoDB"),
-    param("uid").custom(userExists),
+    param("uid").custom(categoriesExists),
     validarCampos,
     handleErrors
 ]
@@ -42,7 +40,7 @@ export const updateCategoriesValidator = [
     //Utilizamos el metodo para validar o permitir varios roles.
     hasRoles("ADMIN_ROLE"),
     param("uid", "No es un ID válido").isMongoId(),
-    param("uid").custom(userExists),
+    param("uid").custom(categoriesExists),
     validarCampos,
     handleErrors
 ]
