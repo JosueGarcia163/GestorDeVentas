@@ -1,0 +1,354 @@
+{
+	"info": {
+		"_postman_id": "e97d2866-5810-464d-bb8c-cc3083b73ccc",
+		"name": "Gestor de ventas",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "37585552"
+	},
+	"item": [
+		{
+			"name": "Users",
+			"item": [
+				{
+					"name": "Buscar un usuario por ID",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2N2FjNTdjY2M0MTgxMzVhYTgxOWJhYWEiLCJpYXQiOjE3MzkzNDc5MjAsImV4cCI6MTczOTM1MTUyMH0.pxw8U3GVAyBMDIUs_z985G5_wqmv-RCaaTqNJlXig4E",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:3001/salesManager/v1/user/findUser/67ac57ccc418135aa819baaa",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "3001",
+							"path": [
+								"salesManager",
+								"v1",
+								"user",
+								"findUser",
+								"67ac57ccc418135aa819baaa"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Eliminar ususario",
+					"request": {
+						"auth": {
+							"type": "bearer"
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:3001/salesManager/v1/user/deleteUser/67aaac54ffeffcd0fed35da",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "3001",
+							"path": [
+								"salesManager",
+								"v1",
+								"user",
+								"deleteUser",
+								"67aaac54ffeffcd0fed35da"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Listar Usuarios",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:3001/salesManager/v1/user/",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "3001",
+							"path": [
+								"salesManager",
+								"v1",
+								"user",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Actualizar contraseña",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"newPassword\":\"12345678AADS$asdfasf%\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:3001/salesManager/v1/user/updatePassword/67aaac54ffeffcd0fed35da3",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "3001",
+							"path": [
+								"salesManager",
+								"v1",
+								"user",
+								"updatePassword",
+								"67aaac54ffeffcd0fed35da3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Actualizar usuario",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2N2FjNGQ0OWVhZDE1NWQzYzkxM2NiMGQiLCJpYXQiOjE3MzkzNDUyMjgsImV4cCI6MTczOTM0ODgyOH0.5bPZszN4Fc0NTEPRDYxwPVzAo5bM98BBDbts4WgX-2U",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"NuevoNombres\",\r\n    \"surname\": \"mendezs\",\r\n    \"username\": \"nuevoUsernames\",\r\n    \"email\": \"nuevoss@gmail.com\",\r\n    \"phone\": \"58496741\",\r\n    \"role\": \"CLIENT_ROLE\"\r\n\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:3001/salesManager/v1/user/updateUser/67ac4d49ead155d3c913cb0d",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "3001",
+							"path": [
+								"salesManager",
+								"v1",
+								"user",
+								"updateUser",
+								"67ac4d49ead155d3c913cb0d"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Actualizar foto",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "profilePicture",
+									"type": "file",
+									"src": "/C:/Users/david/OneDrive/Pictures/Screenshots/Screenshot 2025-02-07 201943.png"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://127.0.0.1:3001/salesManager/v1/user/updateProfilePicture/67aac53de2d79cfe0694816c",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "3001",
+							"path": [
+								"salesManager",
+								"v1",
+								"user",
+								"updateProfilePicture",
+								"67aac53de2d79cfe0694816c"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "Register",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "Josue",
+									"type": "text"
+								},
+								{
+									"key": "surname",
+									"value": "Garcia",
+									"type": "text"
+								},
+								{
+									"key": "username",
+									"value": "username1",
+									"type": "text"
+								},
+								{
+									"key": "email",
+									"value": "username1@gmail.com",
+									"type": "text"
+								},
+								{
+									"key": "phone",
+									"value": "52486947",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "12345678ASddadaw$%s",
+									"type": "text"
+								},
+								{
+									"key": "role",
+									"value": "ADMIN_ROLE",
+									"type": "text"
+								},
+								{
+									"key": "profilePicture",
+									"type": "file",
+									"src": "/C:/Users/david/OneDrive/Pictures/Screenshots/Screenshot 2025-01-31 210709.png"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://127.0.0.1:3001/salesManager/v1/auth/register",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "3001",
+							"path": [
+								"salesManager",
+								"v1",
+								"auth",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"username1@gmail.com\",\r\n    \"username\": \"username1\",\r\n    \"password\": \"12345678ASddadaw$%s\"\r\n\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:3001/salesManager/v1/auth/login",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "3001",
+							"path": [
+								"salesManager",
+								"v1",
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
