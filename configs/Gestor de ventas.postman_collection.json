@@ -49,7 +49,14 @@
 					"name": "Eliminar ususario",
 					"request": {
 						"auth": {
-							"type": "bearer"
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2N2FkMTQ1ZmU5MjQ2NGI5M2I2OTAwYzciLCJpYXQiOjE3MzkzOTY2ODcsImV4cCI6MTczOTQwMDI4N30.MAPwx6Ylq4eaSCmL1oQ3z-QOH-MxcZlpMQzkzumMSEs",
+									"type": "string"
+								}
+							]
 						},
 						"method": "DELETE",
 						"header": [],
@@ -63,7 +70,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://127.0.0.1:3001/salesManager/v1/user/deleteUser/67aaac54ffeffcd0fed35da",
+							"raw": "http://127.0.0.1:3001/salesManager/v1/user/deleteUser/67ad145fe92464b93b6900c7",
 							"protocol": "http",
 							"host": [
 								"127",
@@ -77,7 +84,7 @@
 								"v1",
 								"user",
 								"deleteUser",
-								"67aaac54ffeffcd0fed35da"
+								"67ad145fe92464b93b6900c7"
 							]
 						}
 					},
@@ -287,7 +294,7 @@
 								{
 									"key": "profilePicture",
 									"type": "file",
-									"src": "/C:/Users/david/OneDrive/Pictures/Screenshots/Screenshot 2025-01-31 210709.png"
+									"src": "/C:/Users/Informatica/Pictures/Screenshots/Captura de pantalla 2025-01-28 165145.png"
 								}
 							]
 						},
@@ -343,6 +350,90 @@
 								"v1",
 								"auth",
 								"login"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "categories",
+			"item": [
+				{
+					"name": "crearCategorias",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2N2FkMjdkOWFjMGE5MzJlMGEyZTM5MGIiLCJpYXQiOjE3Mzk0MDExOTIsImV4cCI6MTczOTQwNDc5Mn0.sN-uoHCChEcaLRrHMJisFYSqqxHGE4y-rUV7YdY5x1g",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Categoria1\",\r\n    \"description\": \"descriptioncategoria\"\r\n\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:3001/salesManager/v1/categories/createCategories",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "3001",
+							"path": [
+								"salesManager",
+								"v1",
+								"categories",
+								"createCategories"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "listarCategorias",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2N2FkMjdkOWFjMGE5MzJlMGEyZTM5MGIiLCJpYXQiOjE3Mzk0MDExOTIsImV4cCI6MTczOTQwNDc5Mn0.sN-uoHCChEcaLRrHMJisFYSqqxHGE4y-rUV7YdY5x1g",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:3001/salesManager/v1/categories/",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "3001",
+							"path": [
+								"salesManager",
+								"v1",
+								"categories",
+								""
 							]
 						}
 					},
