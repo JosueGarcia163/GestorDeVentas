@@ -117,7 +117,8 @@ export const updateUser = async (req, res) => {
     try {
         const { uid } = req.params;
         const data = req.body;
-        const loggedInUserId = req.user.id
+        const loggedInUserId = req.usuario.id
+        
 
         //Sencilla validacion para confirmar que el id del token sea el mismo que el id que se esta colocando en el params.
         if (uid !== loggedInUserId) {

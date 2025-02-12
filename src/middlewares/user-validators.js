@@ -66,8 +66,8 @@ export const updateUserValidator = [
     validateJWT,
     //Utilizamos el metodo para validar o permitir varios roles.
     hasRoles("ADMIN_ROLE"),
-    param("id", "No es un ID válido").isMongoId(),
-    param("id").custom(userExists),
+    param("uid", "No es un ID válido").isMongoId(),
+    param("uid").custom(userExists),
     validarCampos,
     handleErrors
 ]
