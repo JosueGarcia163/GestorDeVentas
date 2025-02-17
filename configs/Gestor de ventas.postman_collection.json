@@ -17,7 +17,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2N2IyZDRiYjJhY2Q2MzkxY2FiNDE0ZTMiLCJpYXQiOjE3Mzk3NzMxMTcsImV4cCI6MTczOTc3NjcxN30.4PMaxsNn-lqdvMVbDnDiDjaCBIpPO7yzIhn53Pi2_Fo",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2N2IyZTI3OTgwODc4ZjgxNDI3MmNkYjEiLCJpYXQiOjE3Mzk3NzY2NjgsImV4cCI6MTczOTc4MDI2OH0.6kpQk2gCKiGVbvZjgJmc7GNllDFTKPFE1sKZMhRJe2c",
 									"type": "string"
 								}
 							]
@@ -25,7 +25,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://127.0.0.1:3001/salesManager/v1/user/findUser/67b2d4bb2acd6391cab414e3",
+							"raw": "http://127.0.0.1:3001/salesManager/v1/user/findUser/67b2e23e80878f814272cdad",
 							"protocol": "http",
 							"host": [
 								"127",
@@ -39,7 +39,7 @@
 								"v1",
 								"user",
 								"findUser",
-								"67b2d4bb2acd6391cab414e3"
+								"67b2e23e80878f814272cdad"
 							]
 						}
 					},
@@ -53,7 +53,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2N2IxOTI3NTUwZjBiOGU2MWU5OThkZjAiLCJpYXQiOjE3Mzk2OTExMzEsImV4cCI6MTczOTY5NDczMX0.JxZubKCr4MCN4cxRZCCM77ZnSQE1olrJg0gMzuoCWjA",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2N2IyZTk0OGY3ZGM1MTRiNWIzMGM3YWMiLCJpYXQiOjE3Mzk3Nzg1NjMsImV4cCI6MTczOTc4MjE2M30.N2fe1I46FrGDC6SfRMgQAupukOLrJ2qgT1ljIxthojU",
 									"type": "string"
 								}
 							]
@@ -70,7 +70,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://127.0.0.1:3001/salesManager/v1/user/deleteUser/67b1927550f0b8e61e998df0",
+							"raw": "http://127.0.0.1:3001/salesManager/v1/user/deleteUser/67b2ea7855add1b98cde6474",
 							"protocol": "http",
 							"host": [
 								"127",
@@ -84,7 +84,7 @@
 								"v1",
 								"user",
 								"deleteUser",
-								"67b1927550f0b8e61e998df0"
+								"67b2ea7855add1b98cde6474"
 							]
 						}
 					},
@@ -122,7 +122,14 @@
 					"name": "Actualizar contraseña",
 					"request": {
 						"auth": {
-							"type": "noauth"
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2N2IyZTIzZTgwODc4ZjgxNDI3MmNkYWQiLCJpYXQiOjE3Mzk3NzY2MzYsImV4cCI6MTczOTc4MDIzNn0.81vRM8b_u4sdWClMF3IapvQFo3unuHBZzjvV1qIKnYA",
+									"type": "string"
+								}
+							]
 						},
 						"method": "PATCH",
 						"header": [],
@@ -136,7 +143,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://127.0.0.1:3001/salesManager/v1/user/updatePassword/67aaac54ffeffcd0fed35da3",
+							"raw": "http://127.0.0.1:3001/salesManager/v1/user/updatePassword/67b2e23e80878f814272cdad",
 							"protocol": "http",
 							"host": [
 								"127",
@@ -150,7 +157,7 @@
 								"v1",
 								"user",
 								"updatePassword",
-								"67aaac54ffeffcd0fed35da3"
+								"67b2e23e80878f814272cdad"
 							]
 						}
 					},
@@ -164,7 +171,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2N2IyZGNjNGIxZDVmMzVmOGQyNWQ5MWIiLCJpYXQiOjE3Mzk3NzUxNzUsImV4cCI6MTczOTc3ODc3NX0.R-9arSulmv6h30MV_8b4gHyK6LomTGoGxGwGJJW18MU",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2N2IyZWE3ODU1YWRkMWI5OGNkZTY0NzQiLCJpYXQiOjE3Mzk3Nzg2ODIsImV4cCI6MTczOTc4MjI4Mn0.d20FTJ0ZQ4-nbBq-JhFO2wos1NAUw8j4QkHj_RKCiQg",
 									"type": "string"
 								}
 							]
@@ -181,7 +188,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://127.0.0.1:3001/salesManager/v1/user/updateUser/67b2dc56b1d5f35f8d25d916",
+							"raw": "http://127.0.0.1:3001/salesManager/v1/user/updateUser/67b2ea7855add1b98cde6474",
 							"protocol": "http",
 							"host": [
 								"127",
@@ -195,7 +202,7 @@
 								"v1",
 								"user",
 								"updateUser",
-								"67b2dc56b1d5f35f8d25d916"
+								"67b2ea7855add1b98cde6474"
 							]
 						}
 					},
@@ -209,7 +216,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2N2IyZGM1NmIxZDVmMzVmOGQyNWQ5MTYiLCJpYXQiOjE3Mzk3NzUwNzgsImV4cCI6MTczOTc3ODY3OH0.iiyo7yWRIG9Xbed3-UNlTovY87Hi_Tn2r41G3l2dj0c",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2N2IyZGQ5NjFiMWMxYmE0ZmEwNjNiMmMiLCJpYXQiOjE3Mzk3NzU0MjEsImV4cCI6MTczOTc3OTAyMX0.mmbppD-0a75P1mWjaQVUXX9LJBIS9kwLVraYtitDn0Y",
 									"type": "string"
 								}
 							]
@@ -226,7 +233,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://127.0.0.1:3001/salesManager/v1/user/updateUser/67b2dc56b1d5f35f8d25d916",
+							"raw": "http://127.0.0.1:3001/salesManager/v1/user/updateUser/67b2dd961b1c1ba4fa063b2c",
 							"protocol": "http",
 							"host": [
 								"127",
@@ -240,7 +247,7 @@
 								"v1",
 								"user",
 								"updateUser",
-								"67b2dc56b1d5f35f8d25d916"
+								"67b2dd961b1c1ba4fa063b2c"
 							]
 						}
 					},
@@ -250,7 +257,14 @@
 					"name": "Actualizar foto",
 					"request": {
 						"auth": {
-							"type": "noauth"
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2N2IyZDdhZTYyOThlYTExY2Q5YjhiMzIiLCJpYXQiOjE3Mzk3NzM4NzIsImV4cCI6MTczOTc3NzQ3Mn0.uhBTgej94-2Hn539f7QQaLebIDAeIzcV7i3D-y-IbPI",
+									"type": "string"
+								}
+							]
 						},
 						"method": "PATCH",
 						"header": [],
@@ -265,7 +279,7 @@
 							]
 						},
 						"url": {
-							"raw": "http://127.0.0.1:3001/salesManager/v1/user/updateProfilePicture/67aac53de2d79cfe0694816c",
+							"raw": "http://127.0.0.1:3001/salesManager/v1/user/updateProfilePicture/67b2d7ae6298ea11cd9b8b32",
 							"protocol": "http",
 							"host": [
 								"127",
@@ -279,7 +293,7 @@
 								"v1",
 								"user",
 								"updateProfilePicture",
-								"67aac53de2d79cfe0694816c"
+								"67b2d7ae6298ea11cd9b8b32"
 							]
 						}
 					},
@@ -450,7 +464,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2N2FkMjdkOWFjMGE5MzJlMGEyZTM5MGIiLCJpYXQiOjE3Mzk0MDExOTIsImV4cCI6MTczOTQwNDc5Mn0.sN-uoHCChEcaLRrHMJisFYSqqxHGE4y-rUV7YdY5x1g",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2N2IyZTk0OGY3ZGM1MTRiNWIzMGM3YWMiLCJpYXQiOjE3Mzk3Nzg1NjMsImV4cCI6MTczOTc4MjE2M30.N2fe1I46FrGDC6SfRMgQAupukOLrJ2qgT1ljIxthojU",
 									"type": "string"
 								}
 							]
@@ -494,7 +508,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2N2FkMjdkOWFjMGE5MzJlMGEyZTM5MGIiLCJpYXQiOjE3Mzk0MDExOTIsImV4cCI6MTczOTQwNDc5Mn0.sN-uoHCChEcaLRrHMJisFYSqqxHGE4y-rUV7YdY5x1g",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2N2IyZTk0OGY3ZGM1MTRiNWIzMGM3YWMiLCJpYXQiOjE3Mzk3Nzg1NjMsImV4cCI6MTczOTc4MjE2M30.N2fe1I46FrGDC6SfRMgQAupukOLrJ2qgT1ljIxthojU",
 									"type": "string"
 								}
 							]
