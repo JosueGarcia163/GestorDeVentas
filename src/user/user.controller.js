@@ -3,7 +3,6 @@ import User from "./user.model.js"
 import fs from "fs/promises"
 import { join, dirname } from "path"
 import { fileURLToPath } from "url"
-import bcrypt from "bcryptjs";
 
 
 const __dirname = dirname(fileURLToPath(import.meta.url))
@@ -12,12 +11,23 @@ export const getUserById = async (req, res) => {
     try {
         const { uid } = req.params;
         const user = await User.findById(uid)
+        
 
         if (!user) {
             return res.status(404).json({
                 success: false,
                 message: "Usuario no encontrado"
             })
+        }
+
+        /*Miramos que el usuario que esta intentando listar sea ADMIN_ROLE y que si quiere listar a otro ADMIN_ROLE
+        que no sea a si mismo, no pueda hacerlo.
+        */
+        if (req.usuario.role === "ADMIN_ROLE" && user.role === "ADMIN_ROLE" && req.usuario.id !== uid) {
+            return res.status(403).json({
+                success: false,
+                message: "No tienes permisos para ver este usuario"
+            });
         }
 
         return res.status(200).json({
@@ -62,9 +72,27 @@ export const getUsers = async (req, res) => {
 
 export const deleteUser = async (req, res) => {
     try {
-        const { usuario } = req
+        const { uid } = req.params;
+        const userToDelete = await User.findById(uid)
 
-        const user = await User.findByIdAndUpdate(usuario.uid, {status: false}, {new: true})
+        if (!userToDelete) {
+            return res.status(404).json({
+                success: false,
+                message: "Usuario no encontrado"
+            });
+        }
+
+        /*Miramos que el usuario que esta intentando listar sea ADMIN_ROLE y que si quiere listar a otro ADMIN_ROLE
+        que no sea a si mismo, no pueda hacerlo.
+        */
+        if (req.usuario.role === "ADMIN_ROLE" && userToDelete.role === "ADMIN_ROLE" && req.usuario.id !== uid) {
+            return res.status(403).json({
+                success: false,
+                message: "No tienes permisos para eliminar otro usuario ADMIN"
+            });
+        }
+
+        const user = await User.findByIdAndUpdate(uid, {status: false}, {new: true})
 
         return res.status(200).json({
             success: true,
@@ -86,6 +114,23 @@ export const updatePassword = async (req, res) => {
         const { newPassword } = req.body
 
         const user = await User.findById(uid)
+
+        if(!user){
+            return res.status(404).json({
+                success: false,
+                message: "Usuario no encontrado"
+            });
+        }
+
+        /*Miramos que el usuario que esta intentando listar sea ADMIN_ROLE y que si quiere listar a otro ADMIN_ROLE
+        que no sea a si mismo, no pueda hacerlo.
+        */
+        if (req.usuario.role === "ADMIN_ROLE" && user.role === "ADMIN_ROLE" && req.usuario.id !== uid) {
+            return res.status(403).json({
+                success: false,
+                message: "No tienes permisos para cambiar la contraseña de este usuario"
+            });
+        }
 
         const matchOldAndNewPassword = await verify(user.password, newPassword)
 
@@ -117,15 +162,23 @@ export const updatePassword = async (req, res) => {
 export const updateUser = async (req, res) => {
     try {
         const { uid } = req.params;
-        const data = req.body;
-        const loggedInUserId = req.usuario.id
-        
+        const userToUpdate = await User.findById(uid)
 
-        //Sencilla validacion para confirmar que el id del token sea el mismo que el id que se esta colocando en el params.
-        if (uid !== loggedInUserId) {
+        if (!userToUpdate) {
+            return res.status(404).json({
+                success: false,
+                message: "Usuario no encontrado"
+            });
+        }
+        const data = req.body;
+     
+        /*Miramos que el usuario que esta intentando listar sea ADMIN_ROLE y que si quiere listar a otro ADMIN_ROLE
+        que no sea a si mismo, no pueda hacerlo.
+        */
+        if (req.usuario.role === "ADMIN_ROLE" && userToUpdate.role === "ADMIN_ROLE" && req.usuario.id !== uid) {
             return res.status(403).json({
                 success: false,
-                message: "No puedes modificar la información de otro usuario."
+                message: "No tienes permisos para actualizar este usuario"
             });
         }
 
@@ -149,6 +202,24 @@ export const updateUser = async (req, res) => {
 export const updateProfilePicture = async (req, res) => {
     try {
         const { uid } = req.params
+        const userToUpdate = await User.findById(uid)
+
+        if (!userToUpdate) {
+            return res.status(404).json({
+                success: false,
+                message: "Usuario no encontrado"
+            });
+        }
+
+         /*Miramos que el usuario que esta intentando listar sea ADMIN_ROLE y que si quiere listar a otro ADMIN_ROLE
+        que no sea a si mismo, no pueda hacerlo.
+        */
+        if (req.usuario.role === "ADMIN_ROLE" && userToUpdate.role === "ADMIN_ROLE" && req.usuario.id !== uid) {
+            return res.status(403).json({
+                success: false,
+                message: "No tienes permisos para actualizar este usuario"
+            });
+        }
         let newProfilePicture = req.file ? req.file.filename : null
         if (!newProfilePicture) {
             return res.status(400).json({
@@ -195,8 +266,8 @@ export const createDefaultUser = async () => {
             return;
         }
 
-        //Si no esta el usuario creado encriptara esta password con bycrypt.
-        const hashedPassword = await bcrypt.hash("Admin1234#/SFDS=)", 10);
+        //Si no esta el usuario creado encriptara esta password con argon.
+        const hashedPassword = await hash("Admin1234#/SFDS=)");
 
         /*Definimos los valores por default del usuario.*/ 
         const defaultUser = new User({
