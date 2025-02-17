@@ -122,13 +122,13 @@ export const updatePassword = async (req, res) => {
             });
         }
 
-        /*Miramos que el usuario que esta intentando listar sea ADMIN_ROLE y que si quiere listar a otro ADMIN_ROLE
+        /*Miramos que el usuario que esta intentando actualizar sea ADMIN_ROLE y que si quiere actualizar a otro ADMIN_ROLE
         que no sea a si mismo, no pueda hacerlo.
         */
         if (req.usuario.role === "ADMIN_ROLE" && user.role === "ADMIN_ROLE" && req.usuario.id !== uid) {
             return res.status(403).json({
                 success: false,
-                message: "No tienes permisos para cambiar la contraseña de este usuario"
+                message: "No tienes permisos para cambiar la contraseña a otro admin"
             });
         }
 
@@ -172,13 +172,13 @@ export const updateUser = async (req, res) => {
         }
         const data = req.body;
      
-        /*Miramos que el usuario que esta intentando listar sea ADMIN_ROLE y que si quiere listar a otro ADMIN_ROLE
+        /*Miramos que el usuario que esta intentando actualizar sea ADMIN_ROLE y que si quiere actualizar a otro ADMIN_ROLE
         que no sea a si mismo, no pueda hacerlo.
         */
         if (req.usuario.role === "ADMIN_ROLE" && userToUpdate.role === "ADMIN_ROLE" && req.usuario.id !== uid) {
             return res.status(403).json({
                 success: false,
-                message: "No tienes permisos para actualizar este usuario"
+                message: "No tienes permisos para actualizar a otro admin."
             });
         }
 
@@ -211,13 +211,13 @@ export const updateProfilePicture = async (req, res) => {
             });
         }
 
-         /*Miramos que el usuario que esta intentando listar sea ADMIN_ROLE y que si quiere listar a otro ADMIN_ROLE
+         /*Miramos que el usuario que esta intentando actualizar sea ADMIN_ROLE y que si quiere actualizar a otro ADMIN_ROLE
         que no sea a si mismo, no pueda hacerlo.
         */
         if (req.usuario.role === "ADMIN_ROLE" && userToUpdate.role === "ADMIN_ROLE" && req.usuario.id !== uid) {
             return res.status(403).json({
                 success: false,
-                message: "No tienes permisos para actualizar este usuario"
+                message: "No tienes permisos para actualizar otro usuario ADMIN"
             });
         }
         let newProfilePicture = req.file ? req.file.filename : null
