@@ -128,9 +128,9 @@ export const getProductMoreSeller = async (req, res) => {
 
 export const updateProduct = async (req, res) => {
     try {
-        
+
         const { id } = req.params;
-        
+
         const { name, stock, text, price, category } = req.body;
 
         //Buscamos un producto por medio del id del params
@@ -240,7 +240,6 @@ export const getProductByName = async (req, res) => {
             });
         }
 
-        
         return res.status(200).json({
             success: true,
             product
@@ -254,6 +253,55 @@ export const getProductByName = async (req, res) => {
         })
     }
 }
+
+export const getProductByCategory = async (req, res) => {
+    try {
+        const { categoryName } = req.body;
+
+        if (!categoryName) {
+            return res.status(400).json({
+                success: false,
+                message: "La categoria es necesaria para buscar."
+            });
+        }
+
+        const category = await Category.findOne({ name: categoryName })
+        if (!category) {
+            return res.status(404).json({
+                success: false,
+                message: "Categoría no encontrada"
+            });
+        }
+
+        const products = await Product.find({ category: category._id })
+            //Buscamos el atributo name y description por medio del campo que hace referenca a categorias dentro de Producto
+            .populate("category", "name description")
+
+        if (products.length === 0) {
+            return res.status(404).json({
+                success: false,
+                message: "No hay productos en esta categoría"
+            });
+        }
+
+        return res.status(200).json({
+            success: true,
+            products
+        })
+
+    } catch (err) {
+        return res.status(500).json({
+            success: false,
+            message: "Error al obtener el producto",
+            error: err.message
+        })
+    }
+}
+
+
+
+
+
 
 
 
