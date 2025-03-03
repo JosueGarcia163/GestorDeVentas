@@ -4,7 +4,7 @@ import Product from "./product.model.js";
 
 export const createProduct = async (req, res) => {
     try {
-        //desestructuramos los objetos del req.body de producto.
+        //desestructuro los objetos del req.body de producto.
         const { name, stock, text, price, category } = req.body;
         const user = req.usuario
 
@@ -64,10 +64,10 @@ export const getProductById = async (req, res) => {
         const { id } = req.params
         const product = await Product.findById(id)
 
-            //Buscamos el atributo name y description por medio del campo que hace referenca a categorias dentro de publicacion
+            //Buscamos el atributo name y description por medio del campo que hace referenca a categorias dentro de producto
             .populate("category", "name description")
 
-            //Envio un 200 para dar un ok.
+        //Envio un 200 para dar un ok.
         return res.status(200).json({
             success: true,
             product
@@ -85,10 +85,10 @@ export const getProductOutStock = async (req, res) => {
     try {
         const products = await Product.find({ stock: 0 })
 
-            //Buscamos el atributo name y description por medio del campo que hace referenca a categorias dentro de publicacion
+            //Buscamos el atributo name y description por medio del campo que hace referenca a categorias dentro de producto
             .populate("category", "name description")
 
-            //Si todo funciona enviamos un 200 o ok.
+        //Si todo funciona enviamos un 200 o ok.
         return res.status(200).json({
             success: true,
             products
@@ -106,11 +106,12 @@ export const getProductOutStock = async (req, res) => {
 export const getProductMoreSeller = async (req, res) => {
     try {
         const products = await Product.find()
+            //La funcion sort re ordena los productos en orden de los que tienen un numero mayor en soldQuantity.
             .sort({ soldQuantity: -1 })
-            //Buscamos el atributo name y description por medio del campo que hace referenca a categorias dentro de publicacion
+            //Buscamos el atributo name y description por medio del campo que hace referenca a categorias dentro de producto.
             .populate("category", "name description")
 
-            //Si todo funciona enviamos un 200 o ok.
+        //Si todo funciona enviamos un 200 o ok.
         return res.status(200).json({
             success: true,
             products
@@ -127,11 +128,11 @@ export const getProductMoreSeller = async (req, res) => {
 
 export const updateProduct = async (req, res) => {
     try {
-        //extraemos el id del params
-        const { id } = req.params;
-        // desestructuramos los campos del body
-        const { name, stock, text, price, category } = req.body;
         
+        const { id } = req.params;
+        
+        const { name, stock, text, price, category } = req.body;
+
         //Buscamos un producto por medio del id del params
         const product = await Product.findById(id)
 
@@ -180,7 +181,7 @@ export const deleteProduct = async (req, res) => {
 
         const product = await Product.findById(id)
 
-        //validamos que la publicacion no venga vacia.
+        //validamos que el producto no venga vacio.
         if (!product) {
             return res.status(404).json({
                 success: false,
@@ -188,7 +189,7 @@ export const deleteProduct = async (req, res) => {
             });
         }
 
-        //Validamos para ver si la publicacion ya esta eliminada.
+        //Validamos para ver si el producto ya esta eliminado.
         if (product.status == "false") {
             return res.status(400).json({
                 success: false,
@@ -215,6 +216,48 @@ export const deleteProduct = async (req, res) => {
         });
     }
 }
+
+
+export const getProductByName = async (req, res) => {
+    try {
+        const { name } = req.body;
+
+        if (!name) {
+            return res.status(400).json({
+                success: false,
+                message: "El nombre del producto es necesario"
+            });
+        }
+        const product = await Product.findOne({ name })
+
+            //Buscamos el atributo name y description por medio del campo que hace referenca a categorias dentro de Producto
+            .populate("category", "name description")
+
+        if (!product) {
+            return res.status(404).json({
+                success: false,
+                message: "Producto no encontrado"
+            });
+        }
+
+        
+        return res.status(200).json({
+            success: true,
+            product
+        })
+
+    } catch (err) {
+        return res.status(500).json({
+            success: false,
+            message: "Error al obtener el producto",
+            error: err.message
+        })
+    }
+}
+
+
+
+
 
 
 

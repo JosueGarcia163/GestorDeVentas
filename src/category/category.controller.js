@@ -49,7 +49,7 @@ export const getCategories = async (req, res) => {
   }
 }
 
-//Funcion para editar category
+
 export const updateCategory = async (req, res) => {
   try {
     const { id } = req.params;
@@ -82,7 +82,7 @@ export const updateCategory = async (req, res) => {
 };
 
 
-//Funcion para eliminar la category.
+
 export const deleteCategory = async (req, res) => {
   try {
     const { id } = req.params

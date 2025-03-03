@@ -25,6 +25,32 @@ export const getProductValidator = [
     handleErrors
 ]
 
+export const getProductMoreSellerValidator = [
+    validateJWT,
+    //Utilizamos el metodo para validar o permitir varios roles.
+    hasRoles("ADMIN_ROLE", "CLIENT_ROLE"),
+    validarCampos,
+    handleErrors
+]
+
+export const getProductNameValidator = [
+    validateJWT,
+    //Utilizamos el metodo para validar o permitir varios roles.
+    hasRoles("CLIENT_ROLE"),
+    body("name").notEmpty().withMessage("El nombre es requerido"),
+    validarCampos,
+    handleErrors
+]
+
+export const getProductfilterCategoryValidator = [
+    validateJWT,
+    //Utilizamos el metodo para validar o permitir varios roles.
+    hasRoles("CLIENT_ROLE"),
+    validarCampos,
+    handleErrors
+]
+
+
 export const getProductByIdValidator = [
     validateJWT,
     param("id").isMongoId().withMessage("No es un ID válido de MongoDB"),
@@ -55,3 +81,5 @@ export const updateProductValidator = [
     validarCampos,
     handleErrors
 ]
+
+
