@@ -8,6 +8,7 @@ import { dbConnection } from "./mongo.js"
 import authRoutes from "../src/auth/auth.routes.js"
 import userRoutes from "../src/user/user.routes.js"
 import categoryRoutes from "../src/category/category.routes.js"
+import productRoutes from "../src/product/product.routes.js"
 import apiLimiter from "../src/middlewares/rate-limit-validator.js"
 import { swaggerDocs, swaggerUi } from "./swagger.js"
 
@@ -38,6 +39,7 @@ const routes = (app) => {
     app.use("/salesManager/v1/auth", authRoutes)
     app.use("/salesManager/v1/user", userRoutes)
     app.use("/salesManager/v1/category", categoryRoutes)
+    app.use("/salesManager/v1/product", productRoutes)
     app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocs))
 }
 

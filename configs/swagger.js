@@ -22,7 +22,8 @@ const swaggerOptions = {
     apis:[
         "./src/auth/*.js",
         "./src/user/*.js",
-        "./scr/category/*.js"
+        "./scr/category/*.js",
+        "./src/product/*.js"
     ]
 }
 const swaggerDocs = swaggerJSDoc(swaggerOptions)
