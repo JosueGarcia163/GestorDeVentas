@@ -536,7 +536,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2N2M0YWY5N2M0YWEyYTdjNDdjMDNhMjMiLCJpYXQiOjE3NDA5NDM1ODUsImV4cCI6MTc0MDk0NzE4NX0.NfOaY4wsp5mvhCxU7lYmGt3RKlu0mGdTZCunKi-z_bg",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2N2M2MjFjYTExNTI3ZGQ4NDlkMmY4MmEiLCJpYXQiOjE3NDEwMzgxMDUsImV4cCI6MTc0MTA0MTcwNX0.xQNv9bfxzt4wgrfp9svFedteApeAoHBMWFMOOwwLs8U",
 									"type": "string"
 								}
 							]
@@ -583,7 +583,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2N2M0YWY5N2M0YWEyYTdjNDdjMDNhMjMiLCJpYXQiOjE3NDA5NjI2NTMsImV4cCI6MTc0MDk2NjI1M30.07jMhrsGg9ctwdy-3LEN6VALL1GFmkYq0JjtU7HCPyw",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2N2M1MDgxYzVjZTVmYWNkM2I3MTJhNzMiLCJpYXQiOjE3NDA5NjU5NDIsImV4cCI6MTc0MDk2OTU0Mn0.ZLCFYM7CFqWE_75LR07WiHfbNAcrTegwaPiCWHG9kqU",
 									"type": "string"
 								}
 							]
@@ -627,7 +627,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2N2M0YWY5N2M0YWEyYTdjNDdjMDNhMjMiLCJpYXQiOjE3NDA5NjI2NTMsImV4cCI6MTc0MDk2NjI1M30.07jMhrsGg9ctwdy-3LEN6VALL1GFmkYq0JjtU7HCPyw",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2N2M1MDgxYzVjZTVmYWNkM2I3MTJhNzMiLCJpYXQiOjE3NDA5NjU5NDIsImV4cCI6MTc0MDk2OTU0Mn0.ZLCFYM7CFqWE_75LR07WiHfbNAcrTegwaPiCWHG9kqU",
 									"type": "string"
 								}
 							]
@@ -644,7 +644,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://127.0.0.1:3001/salesManager/v1/category/updateCategories/67c4b1aec4aa2a7c47c03a4b",
+							"raw": "http://127.0.0.1:3001/salesManager/v1/category/updateCategories/67c50bcb0f540a71cfd6e046",
 							"protocol": "http",
 							"host": [
 								"127",
@@ -658,7 +658,7 @@
 								"v1",
 								"category",
 								"updateCategories",
-								"67c4b1aec4aa2a7c47c03a4b"
+								"67c50bcb0f540a71cfd6e046"
 							]
 						}
 					},
@@ -672,7 +672,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2N2M0YWY5N2M0YWEyYTdjNDdjMDNhMjMiLCJpYXQiOjE3NDA5NjI2NTMsImV4cCI6MTc0MDk2NjI1M30.07jMhrsGg9ctwdy-3LEN6VALL1GFmkYq0JjtU7HCPyw",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2N2M2MjFjYTExNTI3ZGQ4NDlkMmY4MmEiLCJpYXQiOjE3NDEwMzgxMDUsImV4cCI6MTc0MTA0MTcwNX0.xQNv9bfxzt4wgrfp9svFedteApeAoHBMWFMOOwwLs8U",
 									"type": "string"
 								}
 							]
@@ -689,7 +689,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://127.0.0.1:3001/salesManager/v1/category/deleteCategories/67c4b1aec4aa2a7c47c03a4b",
+							"raw": "http://127.0.0.1:3001/salesManager/v1/category/deleteCategories/67c626047f9d4a7b85979d14",
 							"protocol": "http",
 							"host": [
 								"127",
@@ -703,7 +703,367 @@
 								"v1",
 								"category",
 								"deleteCategories",
-								"67c4b1aec4aa2a7c47c03a4b"
+								"67c626047f9d4a7b85979d14"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "producto",
+			"item": [
+				{
+					"name": "Agregar Producto",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2N2M2MjFjYTExNTI3ZGQ4NDlkMmY4MmEiLCJpYXQiOjE3NDEwMzgxMDUsImV4cCI6MTc0MTA0MTcwNX0.xQNv9bfxzt4wgrfp9svFedteApeAoHBMWFMOOwwLs8U",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Producto1\",\r\n    \"stock\": \"49\",\r\n    \"text\": \"Este es el primer producto agregado.\",\r\n    \"price\": \"Q560.60\",\r\n    \"category\": \"CATEGORY_DEFAULT\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:3001/salesManager/v1/product/createProduct",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "3001",
+							"path": [
+								"salesManager",
+								"v1",
+								"product",
+								"createProduct"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Agregar Producto 2",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2N2M2MjFjYTExNTI3ZGQ4NDlkMmY4MmEiLCJpYXQiOjE3NDEwMzgxMDUsImV4cCI6MTc0MTA0MTcwNX0.xQNv9bfxzt4wgrfp9svFedteApeAoHBMWFMOOwwLs8U",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Producto2\",\r\n    \"stock\": \"59\",\r\n    \"text\": \"Este es el Segundo producto agregado.\",\r\n    \"price\": \"Q660.60\",\r\n    \"category\": \"CATEGORY_DEFAULT\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:3001/salesManager/v1/product/createProduct",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "3001",
+							"path": [
+								"salesManager",
+								"v1",
+								"product",
+								"createProduct"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Listar todos los productos",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2N2M2MjFjYTExNTI3ZGQ4NDlkMmY4MmEiLCJpYXQiOjE3NDEwMzgxMDUsImV4cCI6MTc0MTA0MTcwNX0.xQNv9bfxzt4wgrfp9svFedteApeAoHBMWFMOOwwLs8U",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:3001/salesManager/v1/product/getProduct",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "3001",
+							"path": [
+								"salesManager",
+								"v1",
+								"product",
+								"getProduct"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Editar Producto",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2N2M2MjFjYTExNTI3ZGQ4NDlkMmY4MmEiLCJpYXQiOjE3NDEwMzgxMDUsImV4cCI6MTc0MTA0MTcwNX0.xQNv9bfxzt4wgrfp9svFedteApeAoHBMWFMOOwwLs8U",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"productoModificadosss\",\r\n    \"stock\": \"0\",\r\n    \"text\": \"texto Modificado\",\r\n    \"price\": \"Q778.00\",\r\n    \"category\": \"Categoria1\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:3001/salesManager/v1/product/updateProduct/67c6222f11527dd849d2f83b",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "3001",
+							"path": [
+								"salesManager",
+								"v1",
+								"product",
+								"updateProduct",
+								"67c6222f11527dd849d2f83b"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Eliminar Producto",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2N2M2MjFjYTExNTI3ZGQ4NDlkMmY4MmEiLCJpYXQiOjE3NDEwMzgxMDUsImV4cCI6MTc0MTA0MTcwNX0.xQNv9bfxzt4wgrfp9svFedteApeAoHBMWFMOOwwLs8U",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:3001/salesManager/v1/product/deleteProduct/67c6222f11527dd849d2f83b",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "3001",
+							"path": [
+								"salesManager",
+								"v1",
+								"product",
+								"deleteProduct",
+								"67c6222f11527dd849d2f83b"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Listar producto por Id",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2N2M2MjFjYTExNTI3ZGQ4NDlkMmY4MmEiLCJpYXQiOjE3NDEwMzgxMDUsImV4cCI6MTc0MTA0MTcwNX0.xQNv9bfxzt4wgrfp9svFedteApeAoHBMWFMOOwwLs8U",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:3001/salesManager/v1/product/getProductById/67c6222f11527dd849d2f83b",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "3001",
+							"path": [
+								"salesManager",
+								"v1",
+								"product",
+								"getProductById",
+								"67c6222f11527dd849d2f83b"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Listar productos agotados",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2N2M2MjFjYTExNTI3ZGQ4NDlkMmY4MmEiLCJpYXQiOjE3NDEwMzgxMDUsImV4cCI6MTc0MTA0MTcwNX0.xQNv9bfxzt4wgrfp9svFedteApeAoHBMWFMOOwwLs8U",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:3001/salesManager/v1/product/getProductOutOfStock",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "3001",
+							"path": [
+								"salesManager",
+								"v1",
+								"product",
+								"getProductOutOfStock"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Listar Productos mas vendidos",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2N2M2MjFjYTExNTI3ZGQ4NDlkMmY4MmEiLCJpYXQiOjE3NDEwMzgxMDUsImV4cCI6MTc0MTA0MTcwNX0.xQNv9bfxzt4wgrfp9svFedteApeAoHBMWFMOOwwLs8U",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:3001/salesManager/v1/product/getProductMoreSeller",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "3001",
+							"path": [
+								"salesManager",
+								"v1",
+								"product",
+								"getProductMoreSeller"
 							]
 						}
 					},
