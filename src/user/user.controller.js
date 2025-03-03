@@ -20,16 +20,6 @@ export const getUserById = async (req, res) => {
             })
         }
 
-        /*Miramos que el usuario que esta intentando listar sea ADMIN_ROLE y que si quiere listar a otro ADMIN_ROLE
-        que no sea a si mismo, no pueda hacerlo.
-        */
-        if (req.usuario.role === "ADMIN_ROLE" && user.role === "ADMIN_ROLE" && req.usuario.id !== uid) {
-            return res.status(403).json({
-                success: false,
-                message: "No tienes permisos para ver este usuario"
-            });
-        }
-
         return res.status(200).json({
             success: true,
             user
@@ -354,7 +344,7 @@ export const deleteUser = async (req, res) => {
         if (req.usuario.role === "CLIENT_ROLE" && req.usuario._id.toString() !== existingUsername._id.toString()) {
             return res.status(403).json({
                 success: false,
-                message: "No tienes permisos para cambiar la eliminar a otro usuario que no sea el tuyo."
+                message: "No tienes permisos para eliminar a otro usuario que no sea el tuyo."
             });
         }
 
