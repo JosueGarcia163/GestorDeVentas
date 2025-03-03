@@ -1,6 +1,6 @@
 import { Router } from "express"
-import { getUserById, getUsers, updatePassword, updateUser, updateProfilePicture } from "./user.controller.js"
-import { getUserByIdValidator, updatePasswordValidator, updateUserValidator, updateProfilePictureValidator } from "../middlewares/user-validators.js"
+import { getUserById, getUsers, updatePassword, updateUser, updateProfilePicture, deleteUser } from "./user.controller.js"
+import { getUserByIdValidator, updatePasswordValidator, updateUserValidator, updateProfilePictureValidator, deleteValidator } from "../middlewares/user-validators.js"
 import { uploadProfilePicture } from "../middlewares/multer-uploads.js"
 
 const router = Router()
@@ -59,7 +59,7 @@ router.get("/findUser", getUserByIdValidator, getUserById)
 
 /**
  * @swagger
- * /users:
+ * /:
  *   get:
  *     summary: Obtiene todos los usuarios con paginación
  *     tags: [User]
@@ -137,25 +137,90 @@ router.get("/", getUsers)
  *   patch:
  *     summary: Actualiza la contraseña de un usuario
  *     tags: [User]
- *     parameters:
- *       - in: body
- *         name: password
- *         required: true
- *         schema:
- *           type: object
- *           properties:
- *             oldPassword:
- *               type: string
- *             newPassword:
- *               type: string
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               username:
+ *                 type: string
+ *                 example: "username1"
+ *               beforePassword:
+ *                 type: string
+ *                 example: "12345678ASddadaw$%s"
+ *               newPassword:
+ *                 type: string
+ *                 example: "12345678AADS$asdfasf%"
  *     responses:
  *       200:
  *         description: Contraseña actualizada con éxito
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 success:
+ *                   type: boolean
+ *                   example: true
+ *                 message:
+ *                   type: string
+ *                   example: "Contraseña actualizada"
  *       400:
  *         description: La contraseña anterior es incorrecta o la nueva contraseña no cumple con los requisitos
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 success:
+ *                   type: boolean
+ *                   example: false
+ *                 message:
+ *                   type: string
+ *                   example: "La contraseña actual es incorrecta"
+ *       403:
+ *         description: No tienes permisos para actualizar la contraseña de este usuario
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 success:
+ *                   type: boolean
+ *                   example: false
+ *                 message:
+ *                   type: string
+ *                   example: "No tienes permisos para cambiar la contraseña a otro usuario que no sea el tuyo."
+ *       404:
+ *         description: Usuario no encontrado o contraseña anterior no proporcionada
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 success:
+ *                   type: boolean
+ *                   example: false
+ *                 message:
+ *                   type: string
+ *                   example: "Usuario no encontrado"
  *       500:
- *         description: Error al actualizar la contraseña
+ *         description: Error interno al actualizar la contraseña
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 success:
+ *                   type: boolean
+ *                   example: false
+ *                 message:
+ *                   type: string
+ *                   example: "Error al actualizar contraseña"
  */
+
 
 router.patch("/updatePassword", updatePasswordValidator, updatePassword)
 
@@ -165,32 +230,35 @@ router.patch("/updatePassword", updatePasswordValidator, updatePassword)
  *   put:
  *     summary: Actualiza los datos de un usuario
  *     tags: [User]
- *     parameters:
- *       - in: body
- *         name: user
- *         required: true
- *         schema:
- *           type: object
- *           properties:
- *             name:
- *               type: string
- *               example: "NuevoNombresasdfa"
- *             surname:
- *               type: string
- *               example: "mendezsasdfasf"
- *             username:
- *               type: string
- *               example: "nuevoUsernamesasdfafs"
- *             email:
- *               type: string
- *               example: "nuevossasdfas@gmail.com"
- *             phone:
- *               type: string
- *               example: "58496741"
- *             role:
- *               type: string
- *               enum: [USER_ROLE, ADMIN_ROLE]
- *               example: "USER_ROLE"
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               beforeUsername:
+ *                 type: string
+ *                 example: "usuarioActual"
+ *               name:
+ *                 type: string
+ *                 example: "NuevoNombre"
+ *               surname:
+ *                 type: string
+ *                 example: "NuevoApellido"
+ *               username:
+ *                 type: string
+ *                 example: "nuevoUsername"
+ *               email:
+ *                 type: string
+ *                 example: "nuevoEmail@gmail.com"
+ *               phone:
+ *                 type: string
+ *                 example: "123456789"
+ *               role:
+ *                 type: string
+ *                 enum: [CLIENT_ROLE, ADMIN_ROLE]
+ *                 example: "CLIENT_ROLE"
  *     responses:
  *       200:
  *         description: Usuario actualizado con éxito
@@ -199,29 +267,75 @@ router.patch("/updatePassword", updatePasswordValidator, updatePassword)
  *             schema:
  *               type: object
  *               properties:
- *                 message:
+ *                 success:
+ *                   type: boolean
+ *                   example: true
+ *                 msg:
  *                   type: string
- *                   example: "Usuario actualizado correctamente."
+ *                   example: "Usuario Actualizado"
+ *                 user:
+ *                   type: object
+ *                   properties:
+ *                     _id:
+ *                       type: string
+ *                       example: "65a2bc3de4f56789012gh345"
+ *                     name:
+ *                       type: string
+ *                       example: "NuevoNombre"
+ *                     surname:
+ *                       type: string
+ *                       example: "NuevoApellido"
+ *                     username:
+ *                       type: string
+ *                       example: "nuevoUsername"
+ *                     email:
+ *                       type: string
+ *                       example: "nuevoEmail@gmail.com"
+ *                     phone:
+ *                       type: string
+ *                       example: "123456789"
+ *                     role:
+ *                       type: string
+ *                       example: "CLIENT_ROLE"
  *       400:
- *         description: Datos incorrectos o no permitidos (por ejemplo, rol no permitido)
+ *         description: Datos incorrectos o rol no permitido
  *         content:
  *           application/json:
  *             schema:
  *               type: object
  *               properties:
+ *                 success:
+ *                   type: boolean
+ *                   example: false
  *                 message:
  *                   type: string
- *                   example: "Rol no permitido."
+ *                   example: "Tu solamente puedes ser: CLIENT_ROLE"
  *       403:
- *         description: El usuario no tiene permisos para modificar los datos
+ *         description: No tienes permisos para actualizar este usuario
  *         content:
  *           application/json:
  *             schema:
  *               type: object
  *               properties:
+ *                 success:
+ *                   type: boolean
+ *                   example: false
  *                 message:
  *                   type: string
- *                   example: "No tienes permiso para actualizar este usuario."
+ *                   example: "No tienes permisos para actualizar a otro admin."
+ *       404:
+ *         description: Usuario no encontrado
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 success:
+ *                   type: boolean
+ *                   example: false
+ *                 message:
+ *                   type: string
+ *                   example: "Usuario no encontrado"
  *       500:
  *         description: Error interno al actualizar el usuario
  *         content:
@@ -229,11 +343,16 @@ router.patch("/updatePassword", updatePasswordValidator, updatePassword)
  *             schema:
  *               type: object
  *               properties:
- *                 message:
+ *                 success:
+ *                   type: boolean
+ *                   example: false
+ *                 msg:
  *                   type: string
- *                   example: "Hubo un error interno al actualizar los datos del usuario."
+ *                   example: "Error al actualizar usuario"
+ *                 error:
+ *                   type: string
+ *                   example: "Detalles del error"
  */
-
 
 
 router.put("/updateUser", updateUserValidator, updateUser)
@@ -260,5 +379,96 @@ router.put("/updateUser", updateUserValidator, updateUser)
  *         description: Error al actualizar la foto de perfil
  */
 router.patch("/updateProfilePicture", uploadProfilePicture.single("profilePicture"), updateProfilePictureValidator, updateProfilePicture)
+
+/**
+ * @swagger
+ * /deleteUser:
+ *   delete:
+ *     summary: Elimina un usuario (cambia su estado a inactivo)
+ *     tags: [User]
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               username:
+ *                 type: string
+ *                 example: "usuario123"
+ *               Password:
+ *                 type: string
+ *                 example: "contraseñaSegura123"
+ *     responses:
+ *       200:
+ *         description: Usuario eliminado exitosamente (estado cambiado a inactivo)
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 success:
+ *                   type: boolean
+ *                   example: true
+ *                 message:
+ *                   type: string
+ *                   example: "Usuario eliminado"
+ *       400:
+ *         description: La contraseña proporcionada es incorrecta
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 success:
+ *                   type: boolean
+ *                   example: false
+ *                 message:
+ *                   type: string
+ *                   example: "La contraseña actual es incorrecta"
+ *       403:
+ *         description: No tienes permisos para eliminar este usuario
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 success:
+ *                   type: boolean
+ *                   example: false
+ *                 message:
+ *                   type: string
+ *                   example: "No tienes permisos para eliminar este usuario"
+ *       404:
+ *         description: Usuario no encontrado
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 success:
+ *                   type: boolean
+ *                   example: false
+ *                 message:
+ *                   type: string
+ *                   example: "Usuario no encontrado"
+ *       500:
+ *         description: Error interno al eliminar el usuario
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 success:
+ *                   type: boolean
+ *                   example: false
+ *                 message:
+ *                   type: string
+ *                   example: "Error al eliminar el usuario"
+ */
+
+
+router.delete("/deleteUser", deleteValidator, deleteUser)
+
 
 export default router

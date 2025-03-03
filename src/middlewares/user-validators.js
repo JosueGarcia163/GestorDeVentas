@@ -66,3 +66,11 @@ export const updateProfilePictureValidator = [
     deleteFileOnError,
     handleErrors
 ]
+
+export const deleteValidator = [
+    validateJWT,
+    //Utilizamos el metodo para validar o permitir varios roles.
+    hasRoles("ADMIN_ROLE", "CLIENT_ROLE"),
+    validarCampos,
+    handleErrors
+]
