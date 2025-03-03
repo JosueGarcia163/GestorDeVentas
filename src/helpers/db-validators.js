@@ -1,31 +1,40 @@
 import User from "../user/user.model.js"
-import Categories from "../categories/categories.model.js"
+import Category from "../category/category.model.js"
 
 export const emailExists = async (email = "") => {
-    const existe = await User.findOne({email})
-    if(existe){
+    const existe = await User.findOne({ email })
+    if (existe) {
         throw new Error(`The email ${email} is already registered`)
     }
 }
 
 export const usernameExists = async (username = "") => {
-    const existe = await User.findOne({username})
-    if(existe){
+    const existe = await User.findOne({ username })
+    if (existe) {
         throw new Error(`The username ${username} is already registered`)
     }
 }
 
 export const userExists = async (uid = " ") => {
     const existe = await User.findById(uid)
-    if(!existe){
+    if (!existe) {
         throw new Error("No existe el usuario con el ID proporcionado")
     }
 }
 
-export const categoriesExists = async (uid = " ") => {
-    const existe = await Categories.findById(uid)
-    if(!existe){
-        throw new Error("No existe el usuario con el ID proporcionado")
+export const categoryExists = async (id = " ") => {
+    const existe = await Category.findById(id)
+    if (!existe) {
+        throw new Error("No existe la categoria con el ID proporcionado")
     }
 }
+
+export const nameCategoryExists = async (name = " ") => {
+    const existe = await Category.findOne({ name })
+    if (existe) {
+        throw new Error(`The category ${name} is already registered`)
+    }
+}
+
+
 

@@ -1,6 +1,6 @@
 import { Schema, model } from "mongoose";
 
-const categoriesSchema = Schema({
+const categorySchema = Schema({
     name: {
         type: String,
         required: [true, "Name is required"],
@@ -12,11 +12,6 @@ const categoriesSchema = Schema({
         maxLength: [200, "Description cannot exceed 200 characters"],
     },
 
-    createdBy: {
-        type: Schema.Types.ObjectId,
-        ref: "User",
-        required: true,
-    },
     status: {
         type: Boolean,
         default: true
@@ -24,8 +19,8 @@ const categoriesSchema = Schema({
 },
     {
         versionKey: false,
-        timeStamps: true
+        timestamps: true
     })
 
 
-export default model("Categories", categoriesSchema)
+export default model("Category", categorySchema)

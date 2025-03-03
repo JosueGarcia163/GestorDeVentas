@@ -9,9 +9,9 @@ const __dirname = dirname(fileURLToPath(import.meta.url))
 
 export const getUserById = async (req, res) => {
     try {
-        const { uid } = req.params;
-        const user = await User.findById(uid)
-        
+        const { _id } = req.usuario
+        const user = await User.findById(_id)
+
 
         if (!user) {
             return res.status(404).json({
@@ -70,69 +70,78 @@ export const getUsers = async (req, res) => {
     }
 }
 
-export const deleteUser = async (req, res) => {
-    try {
-        const { uid } = req.params;
-        const userToDelete = await User.findById(uid)
-
-        if (!userToDelete) {
-            return res.status(404).json({
-                success: false,
-                message: "Usuario no encontrado"
-            });
-        }
-
-        /*Miramos que el usuario que esta intentando listar sea ADMIN_ROLE y que si quiere listar a otro ADMIN_ROLE
-        que no sea a si mismo, no pueda hacerlo.
-        */
-        if (req.usuario.role === "ADMIN_ROLE" && userToDelete.role === "ADMIN_ROLE" && req.usuario.id !== uid) {
-            return res.status(403).json({
-                success: false,
-                message: "No tienes permisos para eliminar otro usuario ADMIN"
-            });
-        }
-
-        const user = await User.findByIdAndUpdate(uid, {status: false}, {new: true})
-
-        return res.status(200).json({
-            success: true,
-            message: "Usuario eliminado",
-            user
-        })
-    } catch (err) {
-        return res.status(500).json({
-            success: false,
-            message: "Error al eliminar el usuario",
-            error: err.message
-        })
-    }
-}
 
 export const updatePassword = async (req, res) => {
     try {
-        const { uid } = req.params
-        const { newPassword } = req.body
+        const { _id } = req.usuario
+        const { beforePassword, newPassword, username } = req.body
 
-        const user = await User.findById(uid)
+        const user = await User.findById(_id)
 
-        if(!user){
+        if (!user) {
             return res.status(404).json({
                 success: false,
                 message: "Usuario no encontrado"
+            });
+        }
+        const existingUsername = await User.findOne({ username: username }).select("_id role password");
+
+        if (!existingUsername) {
+            return res.status(404).json({
+                success: false,
+                message: "Usuario no encontrado"
+            });
+        }
+
+        /*Miramos que el usuario que esta intentando editar sea ADMIN_ROLE y que si quiere editar a otro ADMIN_ROLE
+        que no sea a si mismo, no pueda hacerlo.
+        */
+        if (req.usuario.role === "ADMIN_ROLE" && existingUsername.role === "ADMIN_ROLE" &&
+            req.usuario._id.toString() !== existingUsername._id.toString()) {
+            return res.status(403).json({
+                success: false,
+                message: "No tienes permisos para ver este usuario"
+            });
+        }
+
+
+        if (req.usuario.role === "CLIENT_ROLE" && req.usuario._id.toString() !== existingUsername._id.toString()) {
+            return res.status(403).json({
+                success: false,
+                message: "No tienes permisos para cambiar la contraseña a otro usuario que no sea el tuyo."
             });
         }
 
         /*Miramos que el usuario que esta intentando actualizar sea ADMIN_ROLE y que si quiere actualizar a otro ADMIN_ROLE
         que no sea a si mismo, no pueda hacerlo.
         */
-        if (req.usuario.role === "ADMIN_ROLE" && user.role === "ADMIN_ROLE" && req.usuario.id !== uid) {
+        if (req.usuario.role === "ADMIN_ROLE" && existingUsername.role === "ADMIN_ROLE" && 
+            req.usuario._id.toString() !== existingUsername._id.toString()) {
             return res.status(403).json({
                 success: false,
                 message: "No tienes permisos para cambiar la contraseña a otro admin"
             });
         }
 
-        const matchOldAndNewPassword = await verify(user.password, newPassword)
+        if (!beforePassword) {
+            return res.status(404).json({
+                success: false,
+                message: "debes de colocar la password anterior."
+            });
+
+        }
+
+        //Verificar la password anterior colocada en el body, con la password de la db.
+        const VerifybeforePassword = await verify(existingUsername.password, beforePassword);
+        if (!VerifybeforePassword) {
+            return res.status(400).json({
+                success: false,
+                message: "La contraseña actual es incorrecta"
+            });
+        }
+
+
+        const matchOldAndNewPassword = await verify(existingUsername.password, newPassword)
 
         if (matchOldAndNewPassword) {
             return res.status(400).json({
@@ -143,7 +152,7 @@ export const updatePassword = async (req, res) => {
 
         const encryptedPassword = await hash(newPassword)
 
-        await User.findByIdAndUpdate(uid, { password: encryptedPassword }, { new: true })
+        await User.findByIdAndUpdate(existingUsername._id, { password: encryptedPassword }, { new: true })
 
         return res.status(200).json({
             success: true,
@@ -161,8 +170,9 @@ export const updatePassword = async (req, res) => {
 
 export const updateUser = async (req, res) => {
     try {
-        const { uid } = req.params;
-        const userToUpdate = await User.findById(uid)
+        const { _id } = req.usuario
+        const { beforeUsername } = req.body
+        const userToUpdate = await User.findById(_id)
 
         if (!userToUpdate) {
             return res.status(404).json({
@@ -170,19 +180,45 @@ export const updateUser = async (req, res) => {
                 message: "Usuario no encontrado"
             });
         }
+
+        const existingUsername = await User.findOne({ username: beforeUsername }).select("_id role");
+
+        if (!existingUsername) {
+            return res.status(404).json({
+                success: false,
+                message: "Usuario no encontrado"
+            });
+        }
+
+        if (req.usuario.role === "CLIENT_ROLE" && req.usuario._id.toString() !== existingUsername._id.toString()) {
+            return res.status(403).json({
+                success: false,
+                message: "No tienes permisos para cambiar datos de otro usuario que no sea el tuyo."
+            });
+        }
+
         const data = req.body;
-     
+
         /*Miramos que el usuario que esta intentando actualizar sea ADMIN_ROLE y que si quiere actualizar a otro ADMIN_ROLE
         que no sea a si mismo, no pueda hacerlo.
         */
-        if (req.usuario.role === "ADMIN_ROLE" && userToUpdate.role === "ADMIN_ROLE" && req.usuario.id !== uid) {
+        if (req.usuario.role === "ADMIN_ROLE" && existingUsername.role === "ADMIN_ROLE" &&
+            req.usuario._id.toString() !== existingUsername._id.toString()) {
             return res.status(403).json({
                 success: false,
                 message: "No tienes permisos para actualizar a otro admin."
             });
         }
 
-        const user = await User.findByIdAndUpdate(uid, data, { new: true });
+        /*Aqui valido de que si el usuario se pone como admin o otro rol distinto a user_role
+        no le deje cambiarselo, unicamente user.*/
+        if (req.usuario.role !== "ADMIN_ROLE" && data.role && data.role !== "CLIENT_ROLE") {
+            return res.status(400).json({
+                message: "Tu solamente te puedes ser: CLIENT_ROLE"
+            });
+        }
+
+        const user = await User.findByIdAndUpdate(existingUsername._id, data, { new: true });
 
         res.status(200).json({
             success: true,
@@ -201,23 +237,13 @@ export const updateUser = async (req, res) => {
 //Agregamos metodo para actualizar imagen
 export const updateProfilePicture = async (req, res) => {
     try {
-        const { uid } = req.params
-        const userToUpdate = await User.findById(uid)
+        const { _id } = req.usuario
+        const userToUpdate = await User.findById(_id)
 
         if (!userToUpdate) {
             return res.status(404).json({
                 success: false,
                 message: "Usuario no encontrado"
-            });
-        }
-
-         /*Miramos que el usuario que esta intentando actualizar sea ADMIN_ROLE y que si quiere actualizar a otro ADMIN_ROLE
-        que no sea a si mismo, no pueda hacerlo.
-        */
-        if (req.usuario.role === "ADMIN_ROLE" && userToUpdate.role === "ADMIN_ROLE" && req.usuario.id !== uid) {
-            return res.status(403).json({
-                success: false,
-                message: "No tienes permisos para actualizar otro usuario ADMIN"
             });
         }
         let newProfilePicture = req.file ? req.file.filename : null
@@ -227,7 +253,7 @@ export const updateProfilePicture = async (req, res) => {
                 message: "No hay archivo en la petición"
             })
         }
-        const user = await User.findById(uid)
+        const user = await User.findById(_id)
         if (user.profilePicture) {
             const oldProfilePicture = join(__dirname, "../../public/uploads/profile-pictures", user.profilePicture)
             await fs.unlink(oldProfilePicture)
@@ -248,7 +274,7 @@ export const updateProfilePicture = async (req, res) => {
     }
 }
 
-/*Funcion para crear usuario por default*/ 
+/*Funcion para crear usuario por default*/
 export const createDefaultUser = async () => {
     try {
         /*Agregamos la constante de email por default antes 
@@ -258,7 +284,7 @@ export const createDefaultUser = async () => {
 
         /*Aqui en este apartado buscamos si existe el usuario en la base de datos
         por medio de defaultEmail.
-        */ 
+        */
         const existingUser = await User.findOne({ email: defaultEmail });
         //Si ya existe tira esta validacion y no hara nada.
         if (existingUser) {
@@ -269,7 +295,7 @@ export const createDefaultUser = async () => {
         //Si no esta el usuario creado encriptara esta password con argon.
         const hashedPassword = await hash("Admin1234#/SFDS=)");
 
-        /*Definimos los valores por default del usuario.*/ 
+        /*Definimos los valores por default del usuario.*/
         const defaultUser = new User({
             name: "Admin",
             surname: "User",
@@ -290,5 +316,94 @@ export const createDefaultUser = async () => {
         console.error("Error al crear el usuario administrador:", error.message);
     }
 };
+
+export const deleteUser = async (req, res) => {
+    try {
+        const { _id } = req.usuario
+        const { Password, username } = req.body
+
+        const user = await User.findById(_id)
+
+        if (!user) {
+            return res.status(404).json({
+                success: false,
+                message: "Usuario no encontrado"
+            });
+        }
+        const existingUsername = await User.findOne({ username: username }).select("_id role password");
+
+        if (!existingUsername) {
+            return res.status(404).json({
+                success: false,
+                message: "Usuario no encontrado"
+            });
+        }
+
+        /*Miramos que el usuario que esta intentando eliminar sea ADMIN_ROLE y que si quiere eliminar a otro ADMIN_ROLE
+        que no sea a si mismo, no pueda hacerlo.
+        */
+        if (req.usuario.role === "ADMIN_ROLE" && existingUsername.role === "ADMIN_ROLE" &&
+            req.usuario._id.toString() !== existingUsername._id.toString()) {
+            return res.status(403).json({
+                success: false,
+                message: "No tienes permisos para eliminar este usuario"
+            });
+        }
+
+
+        if (req.usuario.role === "CLIENT_ROLE" && req.usuario._id.toString() !== existingUsername._id.toString()) {
+            return res.status(403).json({
+                success: false,
+                message: "No tienes permisos para cambiar la eliminar a otro usuario que no sea el tuyo."
+            });
+        }
+
+        /*Miramos que el usuario que esta intentando actualizar sea ADMIN_ROLE y que si quiere actualizar a otro ADMIN_ROLE
+        que no sea a si mismo, no pueda hacerlo.
+        */
+        if (req.usuario.role === "ADMIN_ROLE" && existingUsername.role === "ADMIN_ROLE" && 
+            req.usuario._id.toString() !== existingUsername._id.toString()) {
+            return res.status(403).json({
+                success: false,
+                message: "No tienes permisos para eliminar a otro admin"
+            });
+        }
+
+        if (!Password) {
+            return res.status(404).json({
+                success: false,
+                message: "debes de colocar la password del usuario."
+            });
+
+        }
+
+        //Verificar la password anterior colocada en el body, con la password de la db.
+        const VerifybeforePassword = await verify(existingUsername.password, Password);
+        if (!VerifybeforePassword) {
+            return res.status(400).json({
+                success: false,
+                message: "La contraseña actual es incorrecta"
+            });
+        }
+
+         await User.findByIdAndUpdate(existingUsername._id, {status: false}, {new: true})
+
+        return res.status(200).json({
+            success: true,
+            message: "Usuario eliminado",
+            existingUsername
+        })
+    } catch (err) {
+        return res.status(500).json({
+            success: false,
+            message: "Error al eliminar el usuario",
+            error: err.message
+        })
+    }
+}
+
+
+
+
 
 

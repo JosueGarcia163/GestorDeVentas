@@ -10,6 +10,18 @@ export const register = async (req, res) => {
         data.password = encryptedPassword
         data.profilePicture = profilePicture
 
+        /*Validamos de que el usuario este registrando unicamente un usuario.
+         para que se puedan crear unicamente usuarios.
+        */
+        if(data.role && data.role !== "CLIENT_ROLE"){
+            return res.status(400).json({
+                message: "Tu solamente te puedes registrar como: CLIENT_ROLE"
+            });
+        }
+
+        //EL usuario solamente se puede registrar como CLIENT_ROLE y no como admin.
+        data.role =  "CLIENT_ROLE";
+
         const user = await User.create(data);
 
         return res.status(201).json({
@@ -17,6 +29,7 @@ export const register = async (req, res) => {
             name: user.name,
             email: user.email
         });
+        
     } catch (err) {
         return res.status(500).json({
             message: "User registration failed",

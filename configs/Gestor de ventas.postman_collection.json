@@ -11,21 +11,33 @@
 			"item": [
 				{
 					"name": "Buscar un usuario por ID",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
 					"request": {
 						"auth": {
 							"type": "bearer",
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2N2IyZDRiYjJhY2Q2MzkxY2FiNDE0ZTMiLCJpYXQiOjE3Mzk3NzMxMTcsImV4cCI6MTczOTc3NjcxN30.4PMaxsNn-lqdvMVbDnDiDjaCBIpPO7yzIhn53Pi2_Fo",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2N2M0YWY5N2M0YWEyYTdjNDdjMDNhMjMiLCJpYXQiOjE3NDA5NDY2MjksImV4cCI6MTc0MDk1MDIyOX0.Z86bp_CsMJGuUmzFBYRHeWweEufoSzI3L5yK9oZScLU",
 									"type": "string"
 								}
 							]
 						},
 						"method": "GET",
 						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
 						"url": {
-							"raw": "http://127.0.0.1:3001/salesManager/v1/user/findUser/67b2d4bb2acd6391cab414e3",
+							"raw": "http://127.0.0.1:3001/salesManager/v1/user/findUser",
 							"protocol": "http",
 							"host": [
 								"127",
@@ -38,8 +50,7 @@
 								"salesManager",
 								"v1",
 								"user",
-								"findUser",
-								"67b2d4bb2acd6391cab414e3"
+								"findUser"
 							]
 						}
 					},
@@ -53,7 +64,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2N2IxOTI3NTUwZjBiOGU2MWU5OThkZjAiLCJpYXQiOjE3Mzk2OTExMzEsImV4cCI6MTczOTY5NDczMX0.JxZubKCr4MCN4cxRZCCM77ZnSQE1olrJg0gMzuoCWjA",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2N2M0YWZhM2M0YWEyYTdjNDdjMDNhMzAiLCJpYXQiOjE3NDA5NDM1MjIsImV4cCI6MTc0MDk0NzEyMn0.98BI8QJS1Z_Ppx7oNHmj7ixLe79-YTECHiFho9uG6nw",
 									"type": "string"
 								}
 							]
@@ -62,7 +73,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "",
+							"raw": "{\r\n    \"username\": \"username2\",\r\n    \"Password\": \"12345678ASddadaw$%s\"\r\n\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -70,7 +81,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://127.0.0.1:3001/salesManager/v1/user/deleteUser/67b1927550f0b8e61e998df0",
+							"raw": "http://127.0.0.1:3001/salesManager/v1/user/deleteUser",
 							"protocol": "http",
 							"host": [
 								"127",
@@ -83,8 +94,7 @@
 								"salesManager",
 								"v1",
 								"user",
-								"deleteUser",
-								"67b1927550f0b8e61e998df0"
+								"deleteUser"
 							]
 						}
 					},
@@ -122,13 +132,20 @@
 					"name": "Actualizar contraseña",
 					"request": {
 						"auth": {
-							"type": "noauth"
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2N2MyYzkwZTczMTJmNTU5Zjk5YWZhZTQiLCJpYXQiOjE3NDA5NDA0NDgsImV4cCI6MTc0MDk0NDA0OH0.FjrML_MWYeVX_F8K6OKqRXcKIgVBGnjSEw3xsJYCzI0",
+									"type": "string"
+								}
+							]
 						},
 						"method": "PATCH",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"newPassword\":\"12345678AADS$asdfasf%\"\r\n}",
+							"raw": "{\r\n    \"username\": \"username1\",\r\n    \"beforePassword\": \"12345678ASddadaw$%s\",\r\n    \"newPassword\":\"12345678AADS$asdfasf%\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -136,7 +153,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://127.0.0.1:3001/salesManager/v1/user/updatePassword/67aaac54ffeffcd0fed35da3",
+							"raw": "http://127.0.0.1:3001/salesManager/v1/user/updatePassword",
 							"protocol": "http",
 							"host": [
 								"127",
@@ -149,8 +166,7 @@
 								"salesManager",
 								"v1",
 								"user",
-								"updatePassword",
-								"67aaac54ffeffcd0fed35da3"
+								"updatePassword"
 							]
 						}
 					},
@@ -164,7 +180,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2N2IyZGNjNGIxZDVmMzVmOGQyNWQ5MWIiLCJpYXQiOjE3Mzk3NzUxNzUsImV4cCI6MTczOTc3ODc3NX0.R-9arSulmv6h30MV_8b4gHyK6LomTGoGxGwGJJW18MU",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2N2MyYzk0ZTczMTJmNTU5Zjk5YWZhZWIiLCJpYXQiOjE3NDA5NDA0NDYsImV4cCI6MTc0MDk0NDA0Nn0.WFzGqfIdeZX_LGRN6PvWJ5d-6amFmHOqSt-Rs4Sc9h8",
 									"type": "string"
 								}
 							]
@@ -173,7 +189,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"name\": \"NuevoNombres\",\r\n    \"surname\": \"mendezs\",\r\n    \"username\": \"nuevoUsernames\",\r\n    \"email\": \"nuevoss@gmail.com\",\r\n    \"phone\": \"58496741\",\r\n    \"role\": \"CLIENT_ROLE\"\r\n\r\n}",
+							"raw": "{\r\n    \"beforeUsername\": \"username1\",\r\n    \"name\": \"NuevoNombres\",\r\n    \"surname\": \"mendezs\",\r\n    \"username\": \"nuevoUsernames\",\r\n    \"email\": \"nuevoss@gmail.com\",\r\n    \"phone\": \"58496741\",\r\n    \"role\": \"ADMIN_ROLE\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -181,7 +197,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://127.0.0.1:3001/salesManager/v1/user/updateUser/67b2dc56b1d5f35f8d25d916",
+							"raw": "http://127.0.0.1:3001/salesManager/v1/user/updateUser",
 							"protocol": "http",
 							"host": [
 								"127",
@@ -194,53 +210,7 @@
 								"salesManager",
 								"v1",
 								"user",
-								"updateUser",
-								"67b2dc56b1d5f35f8d25d916"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Actualizar usuario Default",
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2N2IyZGM1NmIxZDVmMzVmOGQyNWQ5MTYiLCJpYXQiOjE3Mzk3NzUwNzgsImV4cCI6MTczOTc3ODY3OH0.iiyo7yWRIG9Xbed3-UNlTovY87Hi_Tn2r41G3l2dj0c",
-									"type": "string"
-								}
-							]
-						},
-						"method": "PUT",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"name\": \"NuevoNombres\",\r\n    \"surname\": \"mendezs\",\r\n    \"username\": \"nuevoUsernames\",\r\n    \"phone\": \"58496741\",\r\n    \"role\": \"CLIENT_ROLE\"\r\n\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://127.0.0.1:3001/salesManager/v1/user/updateUser/67b2dc56b1d5f35f8d25d916",
-							"protocol": "http",
-							"host": [
-								"127",
-								"0",
-								"0",
-								"1"
-							],
-							"port": "3001",
-							"path": [
-								"salesManager",
-								"v1",
-								"user",
-								"updateUser",
-								"67b2dc56b1d5f35f8d25d916"
+								"updateUser"
 							]
 						}
 					},
@@ -250,7 +220,14 @@
 					"name": "Actualizar foto",
 					"request": {
 						"auth": {
-							"type": "noauth"
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2N2M0YWY5ZWM0YWEyYTdjNDdjMDNhMmEiLCJpYXQiOjE3NDA5NDMyNjQsImV4cCI6MTc0MDk0Njg2NH0.EMMk4cJDVoY9KpH2AP75A31uSuXW9cCK16gaJgyK27Y",
+									"type": "string"
+								}
+							]
 						},
 						"method": "PATCH",
 						"header": [],
@@ -260,12 +237,12 @@
 								{
 									"key": "profilePicture",
 									"type": "file",
-									"src": "/C:/Users/david/OneDrive/Pictures/Screenshots/Screenshot 2025-02-07 201943.png"
+									"src": "/C:/Users/david/OneDrive/Pictures/Screenshots/Screenshot 2025-02-10 002614.png"
 								}
 							]
 						},
 						"url": {
-							"raw": "http://127.0.0.1:3001/salesManager/v1/user/updateProfilePicture/67aac53de2d79cfe0694816c",
+							"raw": "http://127.0.0.1:3001/salesManager/v1/user/updateProfilePicture",
 							"protocol": "http",
 							"host": [
 								"127",
@@ -278,8 +255,7 @@
 								"salesManager",
 								"v1",
 								"user",
-								"updateProfilePicture",
-								"67aac53de2d79cfe0694816c"
+								"updateProfilePicture"
 							]
 						}
 					},
@@ -333,7 +309,7 @@
 								},
 								{
 									"key": "role",
-									"value": "ADMIN_ROLE",
+									"value": "CLIENT_ROLE",
 									"type": "text"
 								},
 								{
@@ -436,6 +412,116 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "Register2",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "Josue2",
+									"type": "text"
+								},
+								{
+									"key": "surname",
+									"value": "Garcia2",
+									"type": "text"
+								},
+								{
+									"key": "username",
+									"value": "username2",
+									"type": "text"
+								},
+								{
+									"key": "email",
+									"value": "username2@gmail.com",
+									"type": "text"
+								},
+								{
+									"key": "phone",
+									"value": "52486947",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "12345678ASddadaw$%s",
+									"type": "text"
+								},
+								{
+									"key": "role",
+									"value": "CLIENT_ROLE",
+									"type": "text"
+								},
+								{
+									"key": "profilePicture",
+									"type": "file",
+									"src": "/C:/Users/david/OneDrive/Pictures/Screenshots/Screenshot 2025-02-07 201943.png"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://127.0.0.1:3001/salesManager/v1/auth/register",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "3001",
+							"path": [
+								"salesManager",
+								"v1",
+								"auth",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login2",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"username2@gmail.com\",\r\n    \"username\": \"username2\",\r\n    \"password\": \"12345678ASddadaw$%s\"\r\n\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:3001/salesManager/v1/auth/login",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "3001",
+							"path": [
+								"salesManager",
+								"v1",
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		},
@@ -450,7 +536,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2N2FkMjdkOWFjMGE5MzJlMGEyZTM5MGIiLCJpYXQiOjE3Mzk0MDExOTIsImV4cCI6MTczOTQwNDc5Mn0.sN-uoHCChEcaLRrHMJisFYSqqxHGE4y-rUV7YdY5x1g",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2N2M0YWY5N2M0YWEyYTdjNDdjMDNhMjMiLCJpYXQiOjE3NDA5NDM1ODUsImV4cCI6MTc0MDk0NzE4NX0.NfOaY4wsp5mvhCxU7lYmGt3RKlu0mGdTZCunKi-z_bg",
 									"type": "string"
 								}
 							]
@@ -467,7 +553,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://127.0.0.1:3001/salesManager/v1/categories/createCategories",
+							"raw": "http://127.0.0.1:3001/salesManager/v1/category/createCategories",
 							"protocol": "http",
 							"host": [
 								"127",
@@ -479,7 +565,7 @@
 							"path": [
 								"salesManager",
 								"v1",
-								"categories",
+								"category",
 								"createCategories"
 							]
 						}
@@ -488,21 +574,33 @@
 				},
 				{
 					"name": "listarCategorias",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
 					"request": {
 						"auth": {
 							"type": "bearer",
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2N2FkMjdkOWFjMGE5MzJlMGEyZTM5MGIiLCJpYXQiOjE3Mzk0MDExOTIsImV4cCI6MTczOTQwNDc5Mn0.sN-uoHCChEcaLRrHMJisFYSqqxHGE4y-rUV7YdY5x1g",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2N2M0YWY5N2M0YWEyYTdjNDdjMDNhMjMiLCJpYXQiOjE3NDA5NjI2NTMsImV4cCI6MTc0MDk2NjI1M30.07jMhrsGg9ctwdy-3LEN6VALL1GFmkYq0JjtU7HCPyw",
 									"type": "string"
 								}
 							]
 						},
 						"method": "GET",
 						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
 						"url": {
-							"raw": "http://127.0.0.1:3001/salesManager/v1/categories/",
+							"raw": "http://127.0.0.1:3001/salesManager/v1/category/",
 							"protocol": "http",
 							"host": [
 								"127",
@@ -514,8 +612,98 @@
 							"path": [
 								"salesManager",
 								"v1",
-								"categories",
+								"category",
 								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "editar Categorias",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2N2M0YWY5N2M0YWEyYTdjNDdjMDNhMjMiLCJpYXQiOjE3NDA5NjI2NTMsImV4cCI6MTc0MDk2NjI1M30.07jMhrsGg9ctwdy-3LEN6VALL1GFmkYq0JjtU7HCPyw",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"CategoriaEditada\",\r\n    \"description\": \"DescripcionEditada\"\r\n\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:3001/salesManager/v1/category/updateCategories/67c4b1aec4aa2a7c47c03a4b",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "3001",
+							"path": [
+								"salesManager",
+								"v1",
+								"category",
+								"updateCategories",
+								"67c4b1aec4aa2a7c47c03a4b"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Eliminar Categorias",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2N2M0YWY5N2M0YWEyYTdjNDdjMDNhMjMiLCJpYXQiOjE3NDA5NjI2NTMsImV4cCI6MTc0MDk2NjI1M30.07jMhrsGg9ctwdy-3LEN6VALL1GFmkYq0JjtU7HCPyw",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:3001/salesManager/v1/category/deleteCategories/67c4b1aec4aa2a7c47c03a4b",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "3001",
+							"path": [
+								"salesManager",
+								"v1",
+								"category",
+								"deleteCategories",
+								"67c4b1aec4aa2a7c47c03a4b"
 							]
 						}
 					},
