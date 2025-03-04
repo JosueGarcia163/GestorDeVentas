@@ -6,7 +6,7 @@ const router = Router()
 
 /**
  * @swagger
- * /api/cart/createCart:
+ * /createCart:
  *   post:
  *     summary: Crear un nuevo carrito.
  *     description: Agrega productos al carrito de compras del usuario.
@@ -74,7 +74,7 @@ router.post("/createCart", createValidator, addToCart)
 
 /**
  * @swagger
- * /api/cart/deleteCart:
+ * /deleteCart:
  *   delete:
  *     summary: Eliminar un producto del carrito.
  *     description: Elimina un producto del carrito de compras del usuario.
@@ -136,7 +136,7 @@ router.delete("/deleteCart", deleteProductValidator, removeProductFromCart)
 
 /**
  * @swagger
- * /api/cart/getCart:
+ * /getCart:
  *   get:
  *     summary: Obtener el carrito del usuario.
  *     description: Obtiene el carrito de compras del usuario autenticado.

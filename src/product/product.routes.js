@@ -6,7 +6,7 @@ const router = Router()
 
 /**
  * @swagger
- * /api/products/createProduct:
+ * /createProduct:
  *   post:
  *     summary: Crear un nuevo producto.
  *     description: Solo los administradores pueden crear productos.
@@ -73,7 +73,7 @@ router.post("/createProduct", createValidator, createProduct)
 
 /**
  * @swagger
- * /api/products/getProduct:
+ * /getProduct:
  *   get:
  *     summary: Obtener todos los productos activos.
  *     description: Obtiene una lista de productos cuyo estado es verdadero (activos).
@@ -116,7 +116,7 @@ router.get("/getProduct", getProductValidator, getProduct)
 
 /**
  * @swagger
- * /api/products/getProductById/{id}:
+ * /getProductById/{id}:
  *   get:
  *     summary: Obtener un producto por ID.
  *     description: Obtiene los detalles de un producto según su ID.
@@ -167,7 +167,7 @@ router.get("/getProductById/:id", getProductByIdValidator, getProductById)
 
 /**
  * @swagger
- * /api/products/getProductOutOfStock:
+ * /getProductOutOfStock:
  *   get:
  *     summary: Obtener los productos fuera de stock.
  *     description: Obtiene todos los productos que tienen el stock igual a cero.
@@ -209,7 +209,7 @@ router.get("/getProductOutOfStock", getProductValidator, getProductOutStock)
 
 /**
  * @swagger
- * /api/products/getProductMoreSeller:
+ * /getProductMoreSeller:
  *   get:
  *     summary: Obtener los productos más vendidos.
  *     description: Obtiene todos los productos ordenados por la cantidad vendida en orden descendente.
@@ -255,7 +255,7 @@ router.get("/getProductMoreSeller", getProductMoreSellerValidator, getProductMor
 
 /**
  * @swagger
- * /api/products/updateProduct/{id}:
+ * /updateProduct/{id}:
  *   put:
  *     summary: Actualizar un producto.
  *     description: Permite a los administradores actualizar los detalles de un producto existente.
@@ -332,7 +332,7 @@ router.put("/updateProduct/:id", updateProductValidator, updateProduct)
 
 /**
  * @swagger
- * /api/products/deleteProduct/{id}:
+ * /deleteProduct/{id}:
  *   delete:
  *     summary: Eliminar un producto.
  *     description: "Marca un producto como eliminado (status: false)."
@@ -386,7 +386,7 @@ router.delete("/deleteProduct/:id", deleteProductValidator, deleteProduct)
 
 /**
  * @swagger
- * /api/products/getProductByName:
+ * /getProductByName:
  *   get:
  *     summary: Obtener un producto por nombre.
  *     description: Obtiene los detalles de un producto según su nombre.
@@ -440,7 +440,7 @@ router.get("/getProductByName",getProductNameValidator, getProductByName)
 
 /**
  * @swagger
- * /api/products/getProductByCategory:
+ * /getProductByCategory:
  *   post:
  *     summary: Obtener productos por categoría.
  *     description: Obtiene una lista de productos según la categoría.
