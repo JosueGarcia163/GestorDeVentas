@@ -265,6 +265,7 @@ export const getProductByCategory = async (req, res) => {
             });
         }
 
+        //Busco categoria por su nombre el cual recibimos en el body.
         const category = await Category.findOne({ name: categoryName })
         if (!category) {
             return res.status(404).json({
@@ -272,11 +273,12 @@ export const getProductByCategory = async (req, res) => {
                 message: "Categoría no encontrada"
             });
         }
-
+        //Busco la categoria de producto por medio del id de category que recibi antes.
         const products = await Product.find({ category: category._id })
             //Buscamos el atributo name y description por medio del campo que hace referenca a categorias dentro de Producto
             .populate("category", "name description")
 
+            //Si productos no tiene nada mando una validacion para que no aparezca el array vacio si no mejor tire este mensaje
         if (products.length === 0) {
             return res.status(404).json({
                 success: false,
@@ -297,6 +299,13 @@ export const getProductByCategory = async (req, res) => {
         })
     }
 }
+
+
+
+
+
+
+
 
 
 
