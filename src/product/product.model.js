@@ -22,7 +22,7 @@ const productSchema = Schema({
     },
 
     price: {
-        type: String,
+        type: Number,
         required: true,
     },
 

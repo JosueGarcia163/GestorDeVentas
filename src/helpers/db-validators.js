@@ -2,6 +2,7 @@ import User from "../user/user.model.js"
 import Category from "../category/category.model.js"
 import Product from "../product/product.model.js"
 import Cart from "../cart/cart.model.js"
+import Invoice from "../invoice/invoice.model.js"
 
 export const emailExists = async (email = "") => {
     const existe = await User.findOne({ email })
@@ -63,6 +64,13 @@ export const nameCartExists = async (name = " ") => {
     const existe = await Cart.findOne({ name })
     if (existe) {
         throw new Error(`The Carta ${name} is already registered`)
+    }
+}
+
+export const InvoiceExists = async (id = " ") => {
+    const existe = await Invoice.findById(id)
+    if (!existe) {
+        throw new Error("No existe la Carta con el ID proporcionado")
     }
 }
 
