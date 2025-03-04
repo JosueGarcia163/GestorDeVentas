@@ -37,7 +37,7 @@ router.post("/createCategories", createValidator, createCategories)
 
 /**
  * @swagger
- * /categories:
+ * /:
  *   get:
  *     summary: Obtiene una lista de todas las categorías
  *     tags: [Category]
