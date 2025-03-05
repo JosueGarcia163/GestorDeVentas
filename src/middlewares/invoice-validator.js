@@ -12,7 +12,7 @@ export const createInvoiceValidator = [
     handleErrors
 ]
 
-export const deleteInvoiceValidator = [
+export const getInvoiceValidator = [
     validateJWT,
     hasRoles("CLIENT_ROLE"),
     validarCampos,
@@ -21,9 +21,16 @@ export const deleteInvoiceValidator = [
 
 export const updateInvoiceValidator = [
     validateJWT,
-    hasRoles("CLIENT_ROLE"),
+    hasRoles("ADMIN_ROLE"),
     param("id", "No es un ID válido").isMongoId(),
     param("id").custom(InvoiceExists),
+    validarCampos,
+    handleErrors
+]
+
+export const getInvoiceOfUserValidator = [
+    validateJWT,
+    hasRoles("ADMIN_ROLE"),
     validarCampos,
     handleErrors
 ]

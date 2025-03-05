@@ -336,7 +336,7 @@ export const deleteUser = async (req, res) => {
             req.usuario._id.toString() !== existingUsername._id.toString()) {
             return res.status(403).json({
                 success: false,
-                message: "No tienes permisos para eliminar este usuario"
+                message: "No tienes permisos para eliminar otro admin."
             });
         }
 
