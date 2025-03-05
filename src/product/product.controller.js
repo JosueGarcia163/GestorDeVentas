@@ -130,8 +130,7 @@ export const updateProduct = async (req, res) => {
     try {
 
         const { id } = req.params;
-
-        const { name, stock, text, price, category } = req.body;
+        const { category, ...data } = req.body;
 
         //Buscamos un producto por medio del id del params
         const product = await Product.findById(id)
@@ -150,19 +149,16 @@ export const updateProduct = async (req, res) => {
         }
 
         //Actualizo los parametros dentro de la base de datos. 
-        product.name = name || product.name;
-        product.stock = stock || product.stock;
-        product.text = text || product.text;
-        product.price = price || product.price;
-        product.category = existingCategory._id;
+        data.category = existingCategory._id;
+        
 
-        //Guardo el producto en la base de datos
-        await product.save();
+        //Actualizo el producto en la base de datos
+        const updatedProduct = await Product.findByIdAndUpdate(id, data, {new: true})
 
         res.status(200).json({
             success: true,
             msg: 'Producto Actualizado',
-            product,
+            updatedProduct,
         });
 
     } catch (error) {

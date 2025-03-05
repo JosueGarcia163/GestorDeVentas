@@ -9,7 +9,6 @@ export const createCategories = async (req, res) => {
 
     const data = req.body;
     const user = req.usuario
-    console.log(user._id)
 
     const categories = new Categories({
       ...data
