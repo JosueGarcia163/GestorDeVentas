@@ -14,3 +14,8 @@ productos al carrito de compras, eliminar productos del
 carrito o listar productos del carrito basta con estar autenticado
 con el usuario que desea modificar su carrito.
 
+# Si desea logearse siendo admin
+Puede utilizar esta contraseña Admin1234#/SFDS=)
+
+# La ruta para probar los metodos http es: http://127.0.0.1:3001/salesManager/v1 
+puerto: 3001
